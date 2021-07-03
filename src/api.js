@@ -1,5 +1,5 @@
 const base_url = "https://api.rawg.io/api/";
-const api_key = "?key=85e23c484944429da83905c969cd7a34&";
+const api_key = "&key=85e23c484944429da83905c969cd7a34&";
 //Getting the date
 const getCurrentMonth = () => {
   const month = new Date().getMonth() + 1;
@@ -29,5 +29,9 @@ const nextYear = `${currentYear + 1}-${currentMonth}-${currentDay}`;
 
 //Popular Games
 const popular_games = `games?dates=${lastYear},${currentDate}&ordering=-rating&page_size=10`;
-
+const upcoming_games = `games?dates=${currentDate},${nextYear}&ordering=-added&page_size=10`;
+const newGames = `games?dates=${lastYear},${currentDate}&ordering=-released&page_size=10`;
+// url
 export const popularGamesURL = () => `${base_url}${popular_games}${api_key}`;
+export const upcomingGamesURL = () => `${base_url}${upcoming_games}${api_key}`;
+export const newGamesURl = () => `${base_url}${newGames}${api_key}`;
