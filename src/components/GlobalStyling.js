@@ -28,7 +28,7 @@ body{
     h3{
         font-size: 1.2rem;
         color: #333;
-        padding: 1.4rem;
+        padding: 1.4rem 0rem;
     }
     p{
         font-size: 1rem;
