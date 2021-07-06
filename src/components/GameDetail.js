@@ -2,14 +2,23 @@ import React from "react"
 import styled from "styled-components"
 import { motion } from "framer-motion"
 import { useSelector } from "react-redux"
-
+import { useHistory } from "react-router-dom"
 
 
 const GameDetail=()=>{
-const {screen,game}=useSelector((state)=>state.detail)
-
-return( 
-<CardShadowStyle>
+    const history=useHistory();
+const {screen,game,isLoading}=useSelector((state)=>state.detail)
+const exitDetailHandler=(e)=>{
+    const element=e.target;
+    if(element.classList.contains("shadow")){
+        document.body.style.overflow="auto"
+        history.push("/")
+    }
+}
+return(
+    <>
+    {!isLoading && ( 
+<CardShadowStyle className="shadow" onClick={exitDetailHandler}>
 <DetailStyle>
     <Stats>
         <div className="rating">
@@ -40,6 +49,8 @@ return(
 
 
 </CardShadowStyle>
+)}
+</>
 )
 
 
@@ -51,6 +62,7 @@ height: 100vh;
 overflow-y: scroll;
 background: rgba(0,0,0,0.5);
 position: fixed;
+cursor: pointer;
 top: 0;
 left: 0;
 &::-webkit-scrollbar{

@@ -3,14 +3,16 @@ import Home from "./pages/Home";
 import GlobalStyle from "./components/GlobalStyling";
 //pages components
 
+import { Route } from "react-router";
 
 function App() {
  
   return (
     <div className="App">
       <GlobalStyle/>
-      <h2>Ignite</h2>
+    <Route path={["/game/:id","/"]}>
       <Home/>
+      </Route>
     </div>
   );
 }
