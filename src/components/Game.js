@@ -6,6 +6,7 @@ import { useDispatch } from "react-redux";
 import { loadDetails } from "../actions/detailAction";
 import { Link } from "react-router-dom";
 const Game = ({ name, released, image, id }) => {
+  const stringID = id.toString();
   //Load Details of game on click
   const dispatch = useDispatch();
   const loadDetailHandler = () => {
@@ -14,12 +15,12 @@ const Game = ({ name, released, image, id }) => {
   };
 
   return (
-    <StyledGame onClick={loadDetailHandler}>
+    <StyledGame layoutId={stringID} onClick={loadDetailHandler}>
       <Link to={`/game/${id}`}>
-        <h3>{name}</h3>
+        <motion.h3 layoutId={`title ${stringID}`}>{name}</motion.h3>
         <p>{released}</p>
 
-        <img src={image} alt={name} />
+        <motion.img layoutId={`Image ${stringID}`} src={image} alt={name} />
       </Link>
     </StyledGame>
   );

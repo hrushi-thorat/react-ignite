@@ -5,7 +5,7 @@ import { useSelector } from "react-redux"
 import { useHistory } from "react-router-dom"
 
 
-const GameDetail=()=>{
+const GameDetail=({pathID})=>{
     const history=useHistory();
 const {screen,game,isLoading}=useSelector((state)=>state.detail)
 const exitDetailHandler=(e)=>{
@@ -19,10 +19,10 @@ return(
     <>
     {!isLoading && ( 
 <CardShadowStyle className="shadow" onClick={exitDetailHandler}>
-<DetailStyle>
+<DetailStyle layoutId={pathID}>
     <Stats>
         <div className="rating">
-            <h3>{game.name}</h3>
+            <h3 layoutId={`title ${pathID}`}>{game.name}</h3>
             <p>Rating:{game.rating}</p>
         </div>
         <Info>
@@ -35,7 +35,7 @@ return(
         </Info>
     </Stats>
     <MediaStyle>
-        <img src={game.background_image} alt="backgrouns" />
+        <img pathID={`Image ${pathID}`} src={game.background_image} alt="backgrouns" />
     </MediaStyle>
     <DescriptiionStyle>
         <p>{game.description_raw}</p>
