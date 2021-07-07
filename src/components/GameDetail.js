@@ -1,16 +1,18 @@
 import React from "react"
-import styled from "styled-components"
-import { motion } from "framer-motion"
-import { useSelector } from "react-redux"
 import { smallImage } from "../util"
 import { useHistory } from "react-router-dom"
+import { useSelector } from "react-redux"
+import { motion } from "framer-motion"
+import styled from "styled-components"
+// Importing  images
 import playstation from '../img/playstation.svg'
 import nintendo from '../img/nintendo.svg'
 import xbox from '../img/xbox.svg'
 import steam from '../img/steam.svg'
 import apple from '../img/apple.svg'
 import gamepad from '../img/gamepad.svg'
-
+import starEmpty from "../img/star-empty.png"
+import starfull from "../img/star-full.png"
 
 
 const GameDetail=({pathID})=>{
@@ -26,6 +28,22 @@ const exitDetailHandler=(e)=>{
         history.push("/")
     }
 }
+//getting Rating star
+const getStars=()=>{
+    const star=[]
+    const rating=Math.floor(game.rating)
+    for(let i=1;i<=5;i++){
+        if(i<=rating){
+            star.push(<img  alt="star" key={i} src={starfull}/>)
+        }else{
+            star.push(<img  alt="star" key={i} src={starEmpty}/>)
+        }
+
+    }
+    return star;
+
+}
+
 
 //platform icon handler 
 const getPlatform= (platform) =>{
@@ -53,7 +71,7 @@ return(
     <Stats>
         <div className="rating">
             <h3 layoutId={`title ${pathID}`}>{game.name}</h3>
-            <p>Rating:{game.rating}</p>
+            {getStars()}
         </div>
         <Info>
             <h3>Platform</h3>
@@ -125,6 +143,11 @@ const Stats=styled(motion.div)`
 display: flex;
 align-items: center;
 justify-content: space-between;
+img{
+    width: 2rem;
+    height: 2rem;
+    display: inline;
+}
 `
 
 const Info=styled(motion.div)`
