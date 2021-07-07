@@ -2,12 +2,23 @@ import React from "react"
 import styled from "styled-components"
 import { motion } from "framer-motion"
 import { useSelector } from "react-redux"
+import { smallImage } from "../util"
 import { useHistory } from "react-router-dom"
+import playstation from '../img/playstation.svg'
+import nintendo from '../img/nintendo.svg'
+import xbox from '../img/xbox.svg'
+import steam from '../img/steam.svg'
+import apple from '../img/apple.svg'
+import gamepad from '../img/gamepad.svg'
+
 
 
 const GameDetail=({pathID})=>{
     const history=useHistory();
 const {screen,game,isLoading}=useSelector((state)=>state.detail)
+
+
+//exit function
 const exitDetailHandler=(e)=>{
     const element=e.target;
     if(element.classList.contains("shadow")){
@@ -15,6 +26,25 @@ const exitDetailHandler=(e)=>{
         history.push("/")
     }
 }
+
+//platform icon handler 
+const getPlatform= (platform) =>{
+    switch(platform){
+        case ("PlayStation 5"):
+            return playstation;
+        case("Xbox One"):
+        return xbox;
+        case("Pc"):
+        return steam;
+        case("Nintendo Switch"):
+        return nintendo;
+        case("iOS"):
+        return apple;
+        default:
+            return gamepad;
+    }
+}
+
 return(
     <>
     {!isLoading && ( 
@@ -29,20 +59,22 @@ return(
             <h3>Platform</h3>
             <Platforms>
                 {game.platforms.map(data =>(
-                    <h3 key={data.platform.id}>{data.platform.name}</h3>
+                
+                    <img 
+                    alt="game platform icons" key={data.platform.id} src={getPlatform(data.platform.name)}></img>
                 ))}
             </Platforms>
         </Info>
     </Stats>
     <MediaStyle>
-        <img pathID={`Image ${pathID}`} src={game.background_image} alt="backgrouns" />
+        <img pathID={`Image ${pathID}`} src={smallImage(game.background_image,1280)} alt="backgrouns" />
     </MediaStyle>
     <DescriptiionStyle>
         <p>{game.description_raw}</p>
     </DescriptiionStyle>
     <div className="gallery">
         {screen.results.map(screen=>(
-            <img src={screen.image} alt="/" key={screen.id} />
+            <img src={smallImage(screen.image,1280)} alt="/" key={screen.id} />
         ))}
     </div>
 </DetailStyle>
@@ -63,6 +95,7 @@ overflow-y: scroll;
 background: rgba(0,0,0,0.5);
 position: fixed;
 cursor: pointer;
+z-index:5;
 top: 0;
 left: 0;
 &::-webkit-scrollbar{
@@ -82,6 +115,7 @@ padding: 2rem 4rem;
 background: white;
 position: absolute;
 left: 10%;
+z-index:10;
 color: black;
 img{
     width: 100%;

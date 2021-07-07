@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import { useDispatch } from "react-redux";
 import { loadDetails } from "../actions/detailAction";
 import { Link } from "react-router-dom";
+import { smallImage } from "../util";
 const Game = ({ name, released, image, id }) => {
   const stringID = id.toString();
   //Load Details of game on click
@@ -20,7 +21,11 @@ const Game = ({ name, released, image, id }) => {
         <motion.h3 layoutId={`title ${stringID}`}>{name}</motion.h3>
         <p>{released}</p>
 
-        <motion.img layoutId={`Image ${stringID}`} src={image} alt={name} />
+        <motion.img
+          layoutId={`Image ${stringID}`}
+          src={smallImage(image, 640)}
+          alt={name}
+        />
       </Link>
     </StyledGame>
   );
