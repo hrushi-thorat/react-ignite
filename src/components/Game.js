@@ -39,10 +39,16 @@ const StyledGame = styled(motion.div)`
   cursor: pointer;
   border-radius: 1rem;
   overflow: hidden;
+  @media (max-width: 900px) {
+    min-height: 20vh;
+  }
   img {
     width: 100%;
     height: 40vh;
     object-fit: cover;
+    @media (max-width: 900px) {
+      height: 30vh;
+    }
   }
 `;
 export default Game;

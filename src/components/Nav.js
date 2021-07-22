@@ -40,6 +40,10 @@ return(
 const StyledNav=styled(motion.nav)`
 padding: 3rem 5rem ;
 text-align: center;
+
+@media (max-width: 900px) {
+    padding: 1rem 2rem;
+}
 input{
     width: 30%;
     font-size: 1.3rem;
@@ -48,6 +52,9 @@ input{
     margin-top:3rem ;
     box-shadow: 0px 0px 30px rgba(0,0,0,0.2);
    border-radius: 0.8rem;
+   @media (max-width: 900px) {
+    width: 50%;
+}
 }
 button{
     border: none;

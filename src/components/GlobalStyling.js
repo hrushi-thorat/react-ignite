@@ -23,18 +23,29 @@ body{
         font-family: 'Abril Fatface', cursive;;
         font-weight: lighter;
         color: #333;
+        @media (max-width: 900px) {
+    font-size: 1.5rem;
+  }
 
     }
     h3{
         font-size: 1.2rem;
         color: #333;
         padding: 1.4rem 0rem;
+        @media (max-width: 900px) {
+    font-size: 0.8rem;
+    padding: 1rem 0rem;
+  }
     }
     p{
         font-size: 1rem;
         line-height: 200%;
         color: #696969;
         font-weight: 400;
+        @media (max-width: 900px) {
+    font-size: 0.8rem;
+    line-height: 180%;
+  }
     }
     a{
         text-decoration: none;
